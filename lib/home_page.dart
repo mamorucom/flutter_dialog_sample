@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'dialog/show_alert_dialog.dart';
 import 'dialog/show_listbox_dialog.dart';
+import 'dialog/show_text_field_dialog.dart';
 
 ///
 ///
@@ -31,6 +32,7 @@ class HomePage extends StatelessWidget {
     return Column(
       children: [
         ElevatedButton(
+          child: const Text('基本のAlertダイアログ'),
           onPressed: () => showAlertDialog(
             context,
             title: '基本のAlertダイアログ',
@@ -40,33 +42,44 @@ class HomePage extends StatelessWidget {
             defaultActionText: 'OK',
             action: () {},
           ),
-          child: const Text('基本のAlertダイアログ'),
         ),
         // テキストフィールド
         ElevatedButton(
-          onPressed: () => showTextFieldDialog(),
           child: const Text('テキストフィールド'),
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => TextFieldDialog(
+              context: context,
+            ),
+          ),
         ),
-        // チェックボックス
         ElevatedButton(
-          onPressed: () => showCheckboxDialog(),
-          child: const Text('チェックボックス'),
+          child: const Text('エラーダイアログ'),
+          onPressed: () => ErrorDialog(
+            context: context,
+            message: '',
+          ).show(),
         ),
-        // リストボックス
-        ElevatedButton(
-          onPressed: () => showListboxDialog(),
-          child: const Text('リストボックス'),
-        ),
-        // 3つ以上の選択肢
-        ElevatedButton(
-          onPressed: () => showSimpleDialog(),
-          child: const Text('3つ以上の選択肢'),
-        ),
-        // AlertDialogとCupertinoAlertDialogを出し分ける
-        ElevatedButton(
-          onPressed: () => showPlatformDialog(),
-          child: const Text('出し分け'),
-        ),
+        // // チェックボックス
+        // ElevatedButton(
+        //   onPressed: () => showCheckboxDialog(),
+        //   child: const Text('チェックボックス'),
+        // ),
+        // // リストボックス
+        // ElevatedButton(
+        //   onPressed: () => showListboxDialog(),
+        //   child: const Text('リストボックス'),
+        // ),
+        // // 3つ以上の選択肢
+        // ElevatedButton(
+        //   onPressed: () => showSimpleDialog(),
+        //   child: const Text('3つ以上の選択肢'),
+        // ),
+        // // AlertDialogとCupertinoAlertDialogを出し分ける
+        // ElevatedButton(
+        //   onPressed: () => showPlatformDialog(),
+        //   child: const Text('出し分け'),
+        // ),
       ],
     );
   }

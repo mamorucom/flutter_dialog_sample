@@ -1,100 +1,279 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-Future<bool?> showTextFiledDialog(
-  BuildContext context, {
-  required String title,
-  required String content,
-  String? cancelActionText,
-  Function? cancelAction,
-  required String defaultActionText,
-  Function? action,
-}) {
-  return showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(title),
-      content: Text(content),
+// class TextFieldDialog extends StatefulWidget {
+//   const TextFieldDialog({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   State<TextFieldDialog> createState() => _TextFieldDialogState();
+// }
+
+// class _TextFieldDialogState extends State<TextFieldDialog> {
+//   final nameController = TextEditingController();
+//   final numberController = TextEditingController();
+
+//   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AlertDialog(
+//       title: const Text('Error', style: TextStyle(color: Colors.red)),
+//       content: Form(
+//         key: scaffoldKey,
+//         child: Column(
+//           children: [
+//             TextFormField(
+//               controller: nameController,
+//               maxLength: 10,
+//               autovalidateMode: AutovalidateMode.onUserInteraction,
+//               keyboardType: TextInputType.text,
+//               textInputAction: TextInputAction.next,
+//               decoration: const InputDecoration(
+//                 labelText: '名前',
+//                 errorMaxLines: 2,
+//               ),
+//               validator: (value) {
+//                 if (value == null || value.isEmpty) {
+//                   return '';
+//                 }
+//                 if (value.length > 10) {
+//                   return '';
+//                 }
+//                 return null;
+//               },
+//             ),
+//             TextFormField(
+//               controller: numberController,
+//               maxLength: 10,
+//               autovalidateMode: AutovalidateMode.onUserInteraction,
+//               keyboardType: TextInputType.number,
+//               textInputAction: TextInputAction.next,
+//               decoration: const InputDecoration(
+//                 labelText: '番号',
+//                 errorMaxLines: 2,
+//               ),
+//               validator: (value) {
+//                 if (value == null || value.isEmpty) {
+//                   return '';
+//                 }
+//                 if (value.length > 10) {
+//                   return '';
+//                 }
+//                 return null;
+//               },
+//             ),
+//           ],
+//         ),
+//       ),
+//       actions: [
+//         ElevatedButton(
+//           child: const Text('Cancel', style: TextStyle(color: Colors.white)),
+//           // color: Colors.red,
+//           onPressed: () {
+//             Navigator.of(context).pop();
+//             // onConfirm?.call();
+//           },
+//         ),
+//         ElevatedButton(
+//           child: const Text('OK', style: TextStyle(color: Colors.white)),
+//           // color: Colors.red,
+//           onPressed: () {
+//             Navigator.of(context).pop();
+//             // onConfirm?.call();
+//           },
+//         ),
+//       ],
+//     );
+//   }
+
+//   void show() {
+//     showDialog<void>(
+//       context: context,
+//       builder: build,
+//     );
+//   }
+// }
+
+class TextFieldDialog extends HookConsumerWidget {
+  const TextFieldDialog({
+    Key? key,
+    required BuildContext context,
+  })  : _context = context,
+        super(key: key);
+
+  final BuildContext _context;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    const key = GlobalObjectKey<FormState>('FORM_KEY');
+    final nameController = useTextEditingController();
+    final numberController = useTextEditingController();
+
+    return AlertDialog(
+      title: const Text('テキストフィールドダイアログ'),
+      content: Form(
+        key: key,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              controller: nameController,
+              maxLength: 10,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration(
+                labelText: '名前',
+                errorMaxLines: 2,
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '';
+                }
+                if (value.length > 10) {
+                  return '';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              controller: numberController,
+              maxLength: 10,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration(
+                labelText: '番号',
+                errorMaxLines: 2,
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '';
+                }
+                if (value.length > 10) {
+                  return '';
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ),
       actions: [
-        if (cancelActionText != null)
-          TextButton(
-            child: Text(cancelActionText),
-            onPressed: () {
-              if (action != null) {
-                action();
-              }
-              Navigator.of(context).pop(false);
-            },
-          ),
         TextButton(
-          child: Text(defaultActionText),
+          child: const Text('Cancel'),
           onPressed: () {
-            if (action != null) {
-              action();
-            }
-            Navigator.of(context).pop(true);
+            Navigator.of(context).pop();
+            // onConfirm?.call();
+          },
+        ),
+        TextButton(
+          child: const Text('OK'),
+          onPressed: () {
+            Navigator.of(context).pop();
+            // onConfirm?.call();
           },
         ),
       ],
-    ),
-  );
+    );
+  }
+
+  // void show() {
+  //   showDialog<void>(
+  //     context: _context,
+  //     builder: build,
+  //   );
+  // }
 }
 
-
-
-// // part of alert_dialogs;
-// import 'dart:io';
-
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/foundation.dart';
-// import 'package:flutter/material.dart';
-
-// ///
-// /// Andreaコード流用
-// /// https://github.com/bizz84/codewithandrea_flutter_packages/tree/master/packages
-// ///
-// Future<bool?> showAlertDialog({
-//   required BuildContext context,
-//   required String title,
-//   required String content,
-//   String? cancelActionText,
-//   required String defaultActionText,
-// }) async {
-//   if (kIsWeb || !Platform.isIOS) {
-//     return showDialog(
-//       context: context,
-//       builder: (context) => AlertDialog(
-//         title: Text(title),
-//         content: Text(content),
-//         actions: <Widget>[
-//           if (cancelActionText != null)
-//             TextButton(
-//               child: Text(cancelActionText),
-//               onPressed: () => Navigator.of(context).pop(false),
-//             ),
-//           TextButton(
-//             child: Text(defaultActionText),
-//             onPressed: () => Navigator.of(context).pop(true),
-//           ),
-//         ],
-//       ),
+// class CustomHookDialog extends HookConsumerWidget {
+//   void show() {
+//     showDialog<void>(
+//       context: _context,
+//       builder: build,
 //     );
 //   }
-//   return showCupertinoDialog(
-//     context: context,
-//     builder: (context) => CupertinoAlertDialog(
-//       title: Text(title),
-//       content: Text(content),
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     const key = GlobalObjectKey<FormState>('FORM_KEY');
+//     final nameController = useTextEditingController();
+//     final numberController = useTextEditingController();
+
+//     return XXXDialog(
+//       context: context,
+//     );
+//   }
+// }
+
+// class XXXDialog extends StatelessWidget {
+//   const XXXDialog({Key? key, required this.context}) : super(key: key);
+
+//   final BuildContext context;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AlertDialog(
+//       title: const Text('Error', style: TextStyle(color: Colors.red)),
+//       content: const Text('display contentes'),
 //       actions: <Widget>[
-//         if (cancelActionText != null)
-//           CupertinoDialogAction(
-//             child: Text(cancelActionText),
-//             onPressed: () => Navigator.of(context).pop(false),
-//           ),
-//         CupertinoDialogAction(
-//           child: Text(defaultActionText),
-//           onPressed: () => Navigator.of(context).pop(true),
+//         ElevatedButton(
+//           child: const Text('OK', style: TextStyle(color: Colors.white)),
+//           onPressed: () {
+//             Navigator.of(context).pop();
+//             // onConfirm?.call();
+//           },
 //         ),
 //       ],
-//     ),
-//   );
+//     );
+//   }
+
+//   void show() {
+//     showDialog<void>(
+//       context: context,
+//       builder: build,
+//     );
+//   }
 // }
+
+class ErrorDialog extends StatelessWidget {
+  const ErrorDialog({
+    Key? key,
+    required BuildContext context,
+    required this.message,
+    this.onConfirm,
+  })  : _context = context,
+        super(key: key);
+
+  final BuildContext _context;
+  final String message;
+  final VoidCallback? onConfirm;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Error', style: TextStyle(color: Colors.red)),
+      content: Text(message),
+      actions: <Widget>[
+        ElevatedButton(
+          child: const Text('OK', style: TextStyle(color: Colors.white)),
+          // color: Colors.red,
+          onPressed: () {
+            Navigator.of(context).pop();
+            onConfirm?.call();
+          },
+        ),
+      ],
+    );
+  }
+
+  void show() {
+    showDialog<void>(
+      context: _context,
+      builder: build,
+    );
+  }
+}
