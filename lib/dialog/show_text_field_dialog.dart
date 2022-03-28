@@ -100,17 +100,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class TextFieldDialog extends HookConsumerWidget {
   const TextFieldDialog({
     Key? key,
-    required BuildContext context,
-  })  : _context = context,
-        super(key: key);
+    required this.name,
+    required this.number,
+  }) : super(key: key);
 
-  final BuildContext _context;
+  final String name;
+  final String number;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const key = GlobalObjectKey<FormState>('FORM_KEY');
-    final nameController = useTextEditingController();
-    final numberController = useTextEditingController();
+    final nameController = useTextEditingController(text: name);
+    final numberController = useTextEditingController(text: number);
 
     return AlertDialog(
       title: const Text('テキストフィールドダイアログ'),
@@ -131,7 +132,8 @@ class TextFieldDialog extends HookConsumerWidget {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return '';
+                  // return '${code.value}\nmust not be null or empty.';
+                  return '名前を入力してください。';
                 }
                 if (value.length > 10) {
                   return '';
@@ -151,7 +153,8 @@ class TextFieldDialog extends HookConsumerWidget {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return '';
+                  // return '${code.value}を入力してください。';
+                  // return '${code.value}\nmust not be null or empty.';
                 }
                 if (value.length > 10) {
                   return '';
@@ -173,7 +176,13 @@ class TextFieldDialog extends HookConsumerWidget {
         TextButton(
           child: const Text('OK'),
           onPressed: () {
-            Navigator.of(context).pop();
+            if (key.currentState!.validate()) {
+              print('OK');
+            } else {
+              print('NG');
+            }
+
+            // Navigator.of(context).pop();
             // onConfirm?.call();
           },
         ),

@@ -48,8 +48,9 @@ class HomePage extends StatelessWidget {
           child: const Text('テキストフィールド'),
           onPressed: () => showDialog(
             context: context,
-            builder: (context) => TextFieldDialog(
-              context: context,
+            builder: (context) => const TextFieldDialog(
+              name: '',
+              number: '',
             ),
           ),
         ),
