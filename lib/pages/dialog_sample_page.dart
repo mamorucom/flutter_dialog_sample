@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dialog_sample/pages/widgets/text_field_dialog_button_widget2.dart';
 import 'widgets/alert_dialog_button_widget.dart';
 import 'widgets/drop_down_dialog_button_widget.dart';
 import 'widgets/multiple_dialog_button_widget.dart';
@@ -37,6 +38,11 @@ class DialogSamplePage extends StatelessWidget {
           DropdownDialogButtonWidget(),
 
           TextFieldDialogButtonWidget(),
+
+          TextFieldDialogButtonWidget2(),
+
+          
+
 
           // MultipleDialogButtonWidget(),
 
