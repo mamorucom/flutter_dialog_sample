@@ -4,19 +4,17 @@ import 'package:flutter_dialog_sample/presentation/common_widgets/custom_dropdow
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../dialog_sample_notifier.dart';
-
-enum DropdownItemType {
-  item1,
-  item2,
-  item3,
+enum CityType {
+  tokyo,
+  nagoya,
+  osaka,
 }
 
-class DropDownItem {
-  static const Map<DropdownItemType, String> allItems = {
-    DropdownItemType.item1: '項目1',
-    DropdownItemType.item2: '項目2',
-    DropdownItemType.item3: '項目3',
+class City {
+  static const Map<CityType, String> allItems = {
+    CityType.tokyo: '東京',
+    CityType.nagoya: '名古屋',
+    CityType.osaka: '大阪',
   };
 }
 
@@ -25,10 +23,7 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(dialogSampleStateProvider);
-    final notifier = ref.watch(dialogSampleStateProvider.notifier);
-    final itemType = useState<DropdownItemType>(state.itemType);
-
+    final itemType = useState<CityType>(CityType.tokyo);
     return ElevatedButton(
       child: const Text('ドロップダウンダイアログボタン'),
       onPressed: () => showDialog(
@@ -38,10 +33,10 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
           contentWidget: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomDropdown<DropdownItemType>(
+              CustomDropdown<CityType>(
                 labelText: '',
-                list: DropDownItem.allItems.keys.toList(),
-                allTitles: DropDownItem.allItems.entries
+                list: City.allItems.keys.toList(),
+                allTitles: City.allItems.entries
                     .map(
                       (e) => e.value,
                     )
