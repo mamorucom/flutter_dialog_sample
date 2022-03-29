@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dialog_sample/dialog/custom_alert_dialog.dart';
 import 'package:flutter_dialog_sample/dialog/custom_text_field_dialog.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -46,17 +47,7 @@ class HomePage extends StatelessWidget {
               action: () {},
             ),
           ),
-          // テキストフィールド
-          // ElevatedButton(
-          //   child: const Text('テキストフィールド'),
-          //   onPressed: () => showDialog(
-          //     context: context,
-          //     builder: (context) => const TextFieldDialog(
-          //       name: '',
-          //       number: '',
-          //     ),
-          //   ),
-          // ),
+          const _AlertDialogButtonWidget(),
 
           const _TextFieldDialogButtonWidget(),
           // ElevatedButton(
@@ -87,6 +78,32 @@ class HomePage extends StatelessWidget {
           //   child: const Text('出し分け'),
           // ),
         ],
+      ),
+    );
+  }
+}
+
+class _AlertDialogButtonWidget extends StatelessWidget {
+  const _AlertDialogButtonWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: const Text('基本のAlertダイアログボタン'),
+      onPressed: () => showDialog(
+        context: context,
+        builder: (context) => CustomAlertDialog(
+          title: '基本のAlertダイアログ',
+          content: 'This is an alert dialog.',
+          cancelActionText: 'Cancel',
+          cancelAction: () {},
+          defaultActionText: 'OK',
+          action: () {
+            // TODO: implement method
+          },
+        ),
       ),
     );
   }

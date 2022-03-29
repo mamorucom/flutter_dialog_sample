@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class CustomTextFieldDialog extends StatelessWidget {
-  const CustomTextFieldDialog({
+class CustomAlertDialog extends StatelessWidget {
+  const CustomAlertDialog({
     Key? key,
     required this.title,
-    required this.contentWidget,
+    required this.content,
     this.cancelActionText,
     this.cancelAction,
     required this.defaultActionText,
@@ -14,7 +14,7 @@ class CustomTextFieldDialog extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final Widget contentWidget;
+  final String content;
   final String? cancelActionText;
   final Function? cancelAction;
   final String defaultActionText;
@@ -22,14 +22,9 @@ class CustomTextFieldDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const key = GlobalObjectKey<FormState>('FORM_KEY');
-
     return AlertDialog(
       title: Text(title),
-      content: Form(
-        key: key,
-        child: contentWidget,
-      ),
+      content: Text(content),
       actions: [
         if (cancelActionText != null)
           TextButton(
@@ -42,13 +37,8 @@ class CustomTextFieldDialog extends StatelessWidget {
         TextButton(
           child: Text(defaultActionText),
           onPressed: () {
-            if (key.currentState!.validate()) {
-              print('Validate OK');
-              if (action != null) action!();
-              Navigator.of(context).pop(true);
-            } else {
-              print('Validate NG');
-            }
+            if (action != null) action!();
+            Navigator.of(context).pop(true);
           },
         ),
       ],
