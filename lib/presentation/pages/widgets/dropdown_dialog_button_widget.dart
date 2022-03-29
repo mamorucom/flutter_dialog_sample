@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dialog_sample/common_widgets/custom_alert_dialog.dart';
-import 'package:flutter_dialog_sample/common_widgets/custom_dropdown.dart';
+import 'package:flutter_dialog_sample/presentation/common_widgets/custom_alert_dialog.dart';
+import 'package:flutter_dialog_sample/presentation/common_widgets/custom_dropdown.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../dialog_sample_notifier.dart';
 
 enum DropdownItemType {
   item1,
@@ -23,7 +25,10 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemType = useState<DropdownItemType>(DropdownItemType.item1);
+    final state = ref.watch(dialogSampleStateProvider);
+    final notifier = ref.watch(dialogSampleStateProvider.notifier);
+    final itemType = useState<DropdownItemType>(state.itemType);
+
     return ElevatedButton(
       child: const Text('ドロップダウンダイアログボタン'),
       onPressed: () => showDialog(
@@ -42,15 +47,19 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
                     )
                     .toList(),
                 selectedValue: itemType.value,
-                onChanged: (itemType) => itemType.value = itemType!,
+                onChanged: (value) => itemType.value = value!,
               ),
             ],
           ),
           cancelActionText: 'Cancel',
-          cancelAction: () {},
+          cancelAction: () {
+            itemType.value = state.itemType;
+          },
           defaultActionText: 'OK',
           action: () {
-            // TODO: implement method
+            notifier.save(
+              itemType: itemType.value,
+            );
           },
         ),
       ),

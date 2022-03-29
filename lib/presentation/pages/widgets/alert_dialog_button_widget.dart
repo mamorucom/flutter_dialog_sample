@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dialog_sample/common_widgets/custom_alert_dialog.dart';
+import 'package:flutter_dialog_sample/presentation/common_widgets/custom_alert_dialog.dart';
 
 class AlertDialogButtonWidget extends StatelessWidget {
   const AlertDialogButtonWidget({
