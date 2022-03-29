@@ -61,6 +61,9 @@ class TextFieldDialogButtonWidget extends HookConsumerWidget {
                     // return 'Number must not be null or empty.';
                     return '番号を入力してください。';
                   }
+                  if (int.tryParse(value) == null) {
+                    return '番号を入力してください。';
+                  }
                   if (value.length > 10) {
                     return '';
                   }
@@ -76,7 +79,6 @@ class TextFieldDialogButtonWidget extends HookConsumerWidget {
           },
           defaultActionText: 'OK',
           action: () {
-            // TODO: implement method
             notifier.save(
               name: nameController.text,
               number: numberController.text,
