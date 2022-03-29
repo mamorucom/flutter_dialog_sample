@@ -4,8 +4,8 @@ import 'package:flutter_dialog_sample/dialog/custom_text_field_dialog.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'dialog/custom_dropdown.dart';
 import 'dialog/show_alert_dialog.dart';
-import 'dialog/show_listbox_dialog.dart';
 
 ///
 ///
@@ -50,6 +50,8 @@ class HomePage extends StatelessWidget {
           const _AlertDialogButtonWidget(),
 
           const _TextFieldDialogButtonWidget(),
+
+          const _DropdownDialogButtonWidget(),
           // ElevatedButton(
           //   child: const Text('エラーダイアログ'),
           //   onPressed: () => ErrorDialog(
@@ -96,7 +98,7 @@ class _AlertDialogButtonWidget extends StatelessWidget {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: '基本のAlertダイアログ',
-          content: 'This is an alert dialog.',
+          contentWidget: const Text('This is an alert dialog.'),
           cancelActionText: 'Cancel',
           cancelAction: () {},
           defaultActionText: 'OK',
@@ -123,7 +125,7 @@ class _TextFieldDialogButtonWidget extends HookConsumerWidget {
       onPressed: () => showDialog(
         context: context,
         builder: (context) => CustomTextFieldDialog(
-          title: 'カスタムテキストフィールドダイアログ',
+          title: 'テキストフィールドダイアログ',
           contentWidget: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -172,15 +174,64 @@ class _TextFieldDialogButtonWidget extends HookConsumerWidget {
             ],
           ),
           cancelActionText: 'Cancel',
-          cancelAction: () {
-            nameController.text = '';
-            numberController.text = '';
-          },
+          cancelAction: () {},
           defaultActionText: 'OK',
           action: () {
             // TODO: implement method
-            nameController.text = '';
-            numberController.text = '';
+          },
+        ),
+      ),
+    );
+  }
+}
+
+enum DropdownItemType {
+  item1,
+  item2,
+  item3,
+}
+
+class DropDownItem {
+  static const Map<DropdownItemType, String> allItems = {
+    DropdownItemType.item1: '項目1',
+    DropdownItemType.item2: '項目2',
+    DropdownItemType.item3: '項目3',
+  };
+}
+
+class _DropdownDialogButtonWidget extends HookConsumerWidget {
+  const _DropdownDialogButtonWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final itemType = useState<DropdownItemType>(DropdownItemType.item1);
+    return ElevatedButton(
+      child: const Text('ドロップダウンダイアログボタン'),
+      onPressed: () => showDialog(
+        context: context,
+        builder: (context) => CustomAlertDialog(
+          title: 'ドロップダウンダイアログ',
+          contentWidget: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomDropdown<DropdownItemType>(
+                labelText: '',
+                list: DropDownItem.allItems.keys.toList(),
+                allTitles: DropDownItem.allItems.entries
+                    .map(
+                      (e) => e.value,
+                    )
+                    .toList(),
+                selectedValue: itemType.value,
+                onChanged: (itemType) => itemType.value = itemType!,
+              ),
+            ],
+          ),
+          cancelActionText: 'Cancel',
+          cancelAction: () {},
+          defaultActionText: 'OK',
+          action: () {
+            // TODO: implement method
           },
         ),
       ),

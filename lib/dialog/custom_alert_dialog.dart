@@ -6,7 +6,7 @@ class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
     Key? key,
     required this.title,
-    required this.content,
+    required this.contentWidget,
     this.cancelActionText,
     this.cancelAction,
     required this.defaultActionText,
@@ -14,7 +14,7 @@ class CustomAlertDialog extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final String content;
+  final Widget contentWidget;
   final String? cancelActionText;
   final Function? cancelAction;
   final String defaultActionText;
@@ -24,7 +24,8 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content: Text(content),
+      content: contentWidget,
+      // content: Text(content),
       actions: [
         if (cancelActionText != null)
           TextButton(
