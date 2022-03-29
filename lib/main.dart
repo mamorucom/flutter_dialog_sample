@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'pages/dialog_sample_page.dart';
+import 'presentation/pages/dialog_sample_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

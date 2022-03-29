@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dialog_sample/common_widgets/custom_alert_dialog.dart';
-import 'package:flutter_dialog_sample/common_widgets/custom_dropdown.dart';
+import 'package:flutter_dialog_sample/presentation/common_widgets/custom_alert_dialog.dart';
+import 'package:flutter_dialog_sample/presentation/common_widgets/custom_dropdown.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
