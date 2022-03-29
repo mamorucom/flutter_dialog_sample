@@ -1,101 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-// class TextFieldDialog extends StatefulWidget {
-//   const TextFieldDialog({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   State<TextFieldDialog> createState() => _TextFieldDialogState();
-// }
-
-// class _TextFieldDialogState extends State<TextFieldDialog> {
-//   final nameController = TextEditingController();
-//   final numberController = TextEditingController();
-
-//   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AlertDialog(
-//       title: const Text('Error', style: TextStyle(color: Colors.red)),
-//       content: Form(
-//         key: scaffoldKey,
-//         child: Column(
-//           children: [
-//             TextFormField(
-//               controller: nameController,
-//               maxLength: 10,
-//               autovalidateMode: AutovalidateMode.onUserInteraction,
-//               keyboardType: TextInputType.text,
-//               textInputAction: TextInputAction.next,
-//               decoration: const InputDecoration(
-//                 labelText: '名前',
-//                 errorMaxLines: 2,
-//               ),
-//               validator: (value) {
-//                 if (value == null || value.isEmpty) {
-//                   return '';
-//                 }
-//                 if (value.length > 10) {
-//                   return '';
-//                 }
-//                 return null;
-//               },
-//             ),
-//             TextFormField(
-//               controller: numberController,
-//               maxLength: 10,
-//               autovalidateMode: AutovalidateMode.onUserInteraction,
-//               keyboardType: TextInputType.number,
-//               textInputAction: TextInputAction.next,
-//               decoration: const InputDecoration(
-//                 labelText: '番号',
-//                 errorMaxLines: 2,
-//               ),
-//               validator: (value) {
-//                 if (value == null || value.isEmpty) {
-//                   return '';
-//                 }
-//                 if (value.length > 10) {
-//                   return '';
-//                 }
-//                 return null;
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//       actions: [
-//         ElevatedButton(
-//           child: const Text('Cancel', style: TextStyle(color: Colors.white)),
-//           // color: Colors.red,
-//           onPressed: () {
-//             Navigator.of(context).pop();
-//             // onConfirm?.call();
-//           },
-//         ),
-//         ElevatedButton(
-//           child: const Text('OK', style: TextStyle(color: Colors.white)),
-//           // color: Colors.red,
-//           onPressed: () {
-//             Navigator.of(context).pop();
-//             // onConfirm?.call();
-//           },
-//         ),
-//       ],
-//     );
-//   }
-
-//   void show() {
-//     showDialog<void>(
-//       context: context,
-//       builder: build,
-//     );
-//   }
-// }
 
 class TextFieldDialog extends HookConsumerWidget {
   const TextFieldDialog({
@@ -132,7 +39,7 @@ class TextFieldDialog extends HookConsumerWidget {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  // return '${code.value}\nmust not be null or empty.';
+                  // return 'Name must not be null or empty.';
                   return '名前を入力してください。';
                 }
                 if (value.length > 10) {
@@ -153,8 +60,8 @@ class TextFieldDialog extends HookConsumerWidget {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  // return '${code.value}を入力してください。';
-                  // return '${code.value}\nmust not be null or empty.';
+                  // return 'Number must not be null or empty.';
+                  return '番号を入力してください。';
                 }
                 if (value.length > 10) {
                   return '';
@@ -170,32 +77,22 @@ class TextFieldDialog extends HookConsumerWidget {
           child: const Text('Cancel'),
           onPressed: () {
             Navigator.of(context).pop();
-            // onConfirm?.call();
           },
         ),
         TextButton(
           child: const Text('OK'),
           onPressed: () {
             if (key.currentState!.validate()) {
-              print('OK');
+              print('Validate OK');
+              Navigator.of(context).pop();
             } else {
-              print('NG');
+              print('Validate NG');
             }
-
-            // Navigator.of(context).pop();
-            // onConfirm?.call();
           },
         ),
       ],
     );
   }
-
-  // void show() {
-  //   showDialog<void>(
-  //     context: _context,
-  //     builder: build,
-  //   );
-  // }
 }
 
 // class CustomHookDialog extends HookConsumerWidget {

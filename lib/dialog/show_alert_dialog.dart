@@ -19,18 +19,14 @@ Future<bool?> showAlertDialog(
           TextButton(
             child: Text(cancelActionText),
             onPressed: () {
-              if (action != null) {
-                action();
-              }
+              if (cancelAction != null) cancelAction();
               Navigator.of(context).pop(false);
             },
           ),
         TextButton(
           child: Text(defaultActionText),
           onPressed: () {
-            if (action != null) {
-              action();
-            }
+            if (action != null) action();
             Navigator.of(context).pop(true);
           },
         ),
