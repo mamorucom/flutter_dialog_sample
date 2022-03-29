@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dialog_sample/dialog/custom_alert_dialog.dart';
-import 'package:flutter_dialog_sample/dialog/custom_text_field_dialog.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'dialog/custom_dropdown.dart';
+import 'common_widgets/custom_alert_dialog.dart';
+import 'common_widgets/custom_dropdown.dart';
+import 'common_widgets/custom_text_field_dialog.dart';
 import 'dialog/show_alert_dialog.dart';
 
 ///
@@ -52,6 +52,13 @@ class HomePage extends StatelessWidget {
           const _TextFieldDialogButtonWidget(),
 
           const _DropdownDialogButtonWidget(),
+
+          // // 3つ以上の選択肢
+          // ElevatedButton(
+          //   onPressed: () => showSimpleDialog(),
+          //   child: const Text('3つ以上の選択肢'),
+          // ),
+
           // ElevatedButton(
           //   child: const Text('エラーダイアログ'),
           //   onPressed: () => ErrorDialog(
@@ -68,11 +75,6 @@ class HomePage extends StatelessWidget {
           // ElevatedButton(
           //   onPressed: () => showListboxDialog(),
           //   child: const Text('リストボックス'),
-          // ),
-          // // 3つ以上の選択肢
-          // ElevatedButton(
-          //   onPressed: () => showSimpleDialog(),
-          //   child: const Text('3つ以上の選択肢'),
           // ),
           // // AlertDialogとCupertinoAlertDialogを出し分ける
           // ElevatedButton(
