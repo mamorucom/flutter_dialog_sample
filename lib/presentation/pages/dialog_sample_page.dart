@@ -33,43 +33,9 @@ class DialogSamplePage extends StatelessWidget {
       child: Column(
         children: const [
           AlertDialogButtonWidget(),
-
           DropdownDialogButtonWidget(),
-
           TextFieldDialogButtonWidget(),
-
           TextFieldDialogButtonWidget2(),
-
-          // MultipleDialogButtonWidget(),
-
-          // // 3つ以上の選択肢
-          // ElevatedButton(
-          //   onPressed: () => showSimpleDialog(),
-          //   child: const Text('3つ以上の選択肢'),
-          // ),
-
-          // ElevatedButton(
-          //   child: const Text('エラーダイアログ'),
-          //   onPressed: () => ErrorDialog(
-          //     context: context,
-          //     message: '',
-          //   ).show(),
-          // ),
-          // // チェックボックス
-          // ElevatedButton(
-          //   onPressed: () => showCheckboxDialog(),
-          //   child: const Text('チェックボックス'),
-          // ),
-          // // リストボックス
-          // ElevatedButton(
-          //   onPressed: () => showListboxDialog(),
-          //   child: const Text('リストボックス'),
-          // ),
-          // // AlertDialogとCupertinoAlertDialogを出し分ける
-          // ElevatedButton(
-          //   onPressed: () => showPlatformDialog(),
-          //   child: const Text('出し分け'),
-          // ),
         ],
       ),
     );

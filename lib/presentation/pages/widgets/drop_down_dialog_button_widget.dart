@@ -23,7 +23,7 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemType = useState<CityType>(CityType.tokyo);
+    final cityType = useState<CityType>(CityType.tokyo);
     return ElevatedButton(
       child: const Text('ドロップダウンダイアログボタン'),
       onPressed: () => showDialog(
@@ -41,8 +41,8 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
                       (e) => e.value,
                     )
                     .toList(),
-                selectedValue: itemType.value,
-                onChanged: (itemType) => itemType.value = itemType!,
+                selectedValue: cityType.value,
+                onChanged: (cityType) => cityType.value = cityType!,
               ),
             ],
           ),

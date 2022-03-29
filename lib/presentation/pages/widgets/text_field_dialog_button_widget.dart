@@ -36,6 +36,9 @@ class TextFieldDialogButtonWidget extends HookConsumerWidget {
                     // return 'Name must not be null or empty.';
                     return '名前を入力してください。';
                   }
+                  if (int.tryParse(value) == null) {
+                    return '番号を入力してください。';
+                  }
                   if (value.length > 10) {
                     return '';
                   }
@@ -55,6 +58,9 @@ class TextFieldDialogButtonWidget extends HookConsumerWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     // return 'Number must not be null or empty.';
+                    return '番号を入力してください。';
+                  }
+                  if (int.tryParse(value) == null) {
                     return '番号を入力してください。';
                   }
                   if (value.length > 10) {

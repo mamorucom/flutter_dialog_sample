@@ -25,7 +25,6 @@ class CustomAlertDialog extends StatelessWidget {
     return AlertDialog(
       title: Text(title),
       content: contentWidget,
-      // content: Text(content),
       actions: [
         if (cancelActionText != null)
           TextButton(
