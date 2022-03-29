@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../dialog/show_alert_dialog.dart';
 import 'widgets/alert_dialog_button_widget.dart';
 import 'widgets/drop_down_dialog_button_widget.dart';
 import 'widgets/text_field_dialog_button_widget.dart';
@@ -31,24 +30,12 @@ class DialogSamplePage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return Center(
       child: Column(
-        children: [
-          ElevatedButton(
-            child: const Text('基本のAlertダイアログ'),
-            onPressed: () => showAlertDialog(
-              context,
-              title: '基本のAlertダイアログ',
-              content: 'This is an alert dialog.',
-              cancelActionText: 'Cancel',
-              cancelAction: () {},
-              defaultActionText: 'OK',
-              action: () {},
-            ),
-          ),
-          const AlertDialogButtonWidget(),
+        children: const [
+          AlertDialogButtonWidget(),
 
-          const TextFieldDialogButtonWidget(),
+          TextFieldDialogButtonWidget(),
 
-          const DropdownDialogButtonWidget(),
+          DropdownDialogButtonWidget(),
 
           // // 3つ以上の選択肢
           // ElevatedButton(
