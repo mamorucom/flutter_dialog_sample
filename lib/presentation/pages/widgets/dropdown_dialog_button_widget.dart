@@ -4,6 +4,8 @@ import 'package:flutter_dialog_sample/presentation/common_widgets/custom_dropdow
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../dialog_sample_notifier.dart';
+
 enum CityType {
   tokyo,
   nagoya,
@@ -23,7 +25,10 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemType = useState<CityType>(CityType.tokyo);
+    final state = ref.watch(dialogSampleStateProvider);
+    final notifier = ref.watch(dialogSampleStateProvider.notifier);
+    final cityType = useState<CityType>(state.cityType);
+
     return ElevatedButton(
       child: const Text('ドロップダウンダイアログボタン'),
       onPressed: () => showDialog(
@@ -41,19 +46,19 @@ class DropdownDialogButtonWidget extends HookConsumerWidget {
                       (e) => e.value,
                     )
                     .toList(),
-                selectedValue: itemType.value,
-                onChanged: (value) => itemType.value = value!,
+                selectedValue: cityType.value,
+                onChanged: (value) => cityType.value = value!,
               ),
             ],
           ),
           cancelActionText: 'Cancel',
           cancelAction: () {
-            itemType.value = state.itemType;
+            cityType.value = state.cityType;
           },
           defaultActionText: 'OK',
           action: () {
             notifier.save(
-              itemType: itemType.value,
+              cityType: cityType.value,
             );
           },
         ),

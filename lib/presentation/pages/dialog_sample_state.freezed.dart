@@ -19,11 +19,11 @@ class _$DialogSampleStateTearOff {
   const _$DialogSampleStateTearOff();
 
   _DialogSampleState call(
-      {DropdownItemType itemType = DropdownItemType.item1,
+      {CityType cityType = CityType.tokyo,
       String name = '',
       String number = ''}) {
     return _DialogSampleState(
-      itemType: itemType,
+      cityType: cityType,
       name: name,
       number: number,
     );
@@ -35,7 +35,7 @@ const $DialogSampleState = _$DialogSampleStateTearOff();
 
 /// @nodoc
 mixin _$DialogSampleState {
-  DropdownItemType get itemType => throw _privateConstructorUsedError;
+  CityType get cityType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get number => throw _privateConstructorUsedError;
 
@@ -49,7 +49,7 @@ abstract class $DialogSampleStateCopyWith<$Res> {
   factory $DialogSampleStateCopyWith(
           DialogSampleState value, $Res Function(DialogSampleState) then) =
       _$DialogSampleStateCopyWithImpl<$Res>;
-  $Res call({DropdownItemType itemType, String name, String number});
+  $Res call({CityType cityType, String name, String number});
 }
 
 /// @nodoc
@@ -63,15 +63,15 @@ class _$DialogSampleStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? itemType = freezed,
+    Object? cityType = freezed,
     Object? name = freezed,
     Object? number = freezed,
   }) {
     return _then(_value.copyWith(
-      itemType: itemType == freezed
-          ? _value.itemType
-          : itemType // ignore: cast_nullable_to_non_nullable
-              as DropdownItemType,
+      cityType: cityType == freezed
+          ? _value.cityType
+          : cityType // ignore: cast_nullable_to_non_nullable
+              as CityType,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -91,7 +91,7 @@ abstract class _$DialogSampleStateCopyWith<$Res>
           _DialogSampleState value, $Res Function(_DialogSampleState) then) =
       __$DialogSampleStateCopyWithImpl<$Res>;
   @override
-  $Res call({DropdownItemType itemType, String name, String number});
+  $Res call({CityType cityType, String name, String number});
 }
 
 /// @nodoc
@@ -107,15 +107,15 @@ class __$DialogSampleStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? itemType = freezed,
+    Object? cityType = freezed,
     Object? name = freezed,
     Object? number = freezed,
   }) {
     return _then(_DialogSampleState(
-      itemType: itemType == freezed
-          ? _value.itemType
-          : itemType // ignore: cast_nullable_to_non_nullable
-              as DropdownItemType,
+      cityType: cityType == freezed
+          ? _value.cityType
+          : cityType // ignore: cast_nullable_to_non_nullable
+              as CityType,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -132,13 +132,11 @@ class __$DialogSampleStateCopyWithImpl<$Res>
 
 class _$_DialogSampleState implements _DialogSampleState {
   _$_DialogSampleState(
-      {this.itemType = DropdownItemType.item1,
-      this.name = '',
-      this.number = ''});
+      {this.cityType = CityType.tokyo, this.name = '', this.number = ''});
 
   @JsonKey()
   @override
-  final DropdownItemType itemType;
+  final CityType cityType;
   @JsonKey()
   @override
   final String name;
@@ -148,7 +146,7 @@ class _$_DialogSampleState implements _DialogSampleState {
 
   @override
   String toString() {
-    return 'DialogSampleState(itemType: $itemType, name: $name, number: $number)';
+    return 'DialogSampleState(cityType: $cityType, name: $name, number: $number)';
   }
 
   @override
@@ -156,7 +154,7 @@ class _$_DialogSampleState implements _DialogSampleState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DialogSampleState &&
-            const DeepCollectionEquality().equals(other.itemType, itemType) &&
+            const DeepCollectionEquality().equals(other.cityType, cityType) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.number, number));
   }
@@ -164,7 +162,7 @@ class _$_DialogSampleState implements _DialogSampleState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(itemType),
+      const DeepCollectionEquality().hash(cityType),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(number));
 
@@ -175,13 +173,11 @@ class _$_DialogSampleState implements _DialogSampleState {
 }
 
 abstract class _DialogSampleState implements DialogSampleState {
-  factory _DialogSampleState(
-      {DropdownItemType itemType,
-      String name,
-      String number}) = _$_DialogSampleState;
+  factory _DialogSampleState({CityType cityType, String name, String number}) =
+      _$_DialogSampleState;
 
   @override
-  DropdownItemType get itemType;
+  CityType get cityType;
   @override
   String get name;
   @override

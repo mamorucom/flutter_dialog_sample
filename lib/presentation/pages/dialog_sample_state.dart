@@ -7,7 +7,7 @@ part 'dialog_sample_state.freezed.dart';
 @freezed
 class DialogSampleState with _$DialogSampleState {
   factory DialogSampleState({
-    @Default(DropdownItemType.item1) DropdownItemType itemType,
+    @Default(CityType.tokyo) CityType cityType,
     @Default('') String name,
     @Default('') String number,
   }) = _DialogSampleState;

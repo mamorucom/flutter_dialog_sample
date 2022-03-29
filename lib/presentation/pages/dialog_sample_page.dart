@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dialog_sample/pages/widgets/text_field_dialog_button_widget2.dart';
 import 'widgets/alert_dialog_button_widget.dart';
 import 'widgets/dropdown_dialog_button_widget.dart';
 import 'widgets/text_field_dialog_button_widget.dart';
+import 'widgets/text_field_dialog_button_widget2.dart';
 
 ///
 ///
@@ -33,43 +33,9 @@ class DialogSamplePage extends StatelessWidget {
       child: Column(
         children: const [
           AlertDialogButtonWidget(),
-
           DropdownDialogButtonWidget(),
-
           TextFieldDialogButtonWidget(),
-
           TextFieldDialogButtonWidget2(),
-
-          // MultipleDialogButtonWidget(),
-
-          // // 3つ以上の選択肢
-          // ElevatedButton(
-          //   onPressed: () => showSimpleDialog(),
-          //   child: const Text('3つ以上の選択肢'),
-          // ),
-
-          // ElevatedButton(
-          //   child: const Text('エラーダイアログ'),
-          //   onPressed: () => ErrorDialog(
-          //     context: context,
-          //     message: '',
-          //   ).show(),
-          // ),
-          // // チェックボックス
-          // ElevatedButton(
-          //   onPressed: () => showCheckboxDialog(),
-          //   child: const Text('チェックボックス'),
-          // ),
-          // // リストボックス
-          // ElevatedButton(
-          //   onPressed: () => showListboxDialog(),
-          //   child: const Text('リストボックス'),
-          // ),
-          // // AlertDialogとCupertinoAlertDialogを出し分ける
-          // ElevatedButton(
-          //   onPressed: () => showPlatformDialog(),
-          //   child: const Text('出し分け'),
-          // ),
         ],
       ),
     );

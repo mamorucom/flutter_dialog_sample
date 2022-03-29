@@ -14,12 +14,12 @@ class DialogSampleNotifier extends StateNotifier<DialogSampleState> {
   void read() {}
 
   void save({
-    DropdownItemType? itemType,
+    CityType? cityType,
     String? name,
     String? number,
   }) {
-    if (itemType != null) {
-      state = state.copyWith(itemType: itemType);
+    if (cityType != null) {
+      state = state.copyWith(cityType: cityType);
     }
     if (name != null) {
       state = state.copyWith(name: name);

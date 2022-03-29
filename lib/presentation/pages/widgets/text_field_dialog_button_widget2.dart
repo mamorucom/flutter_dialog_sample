@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dialog_sample/common_widgets/custom_text_field_dialog.dart';
+import 'package:flutter_dialog_sample/presentation/common_widgets/custom_text_field_dialog.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../dialog_sample_notifier.dart';
 
 class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
   const TextFieldDialogButtonWidget2({
@@ -13,8 +15,10 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nameController = useTextEditingController();
-    final numberController = useTextEditingController();
+    final state = ref.watch(dialogSampleStateProvider);
+    final notifier = ref.watch(dialogSampleStateProvider.notifier);
+    final nameController = useTextEditingController(text: state.name);
+    final numberController = useTextEditingController(text: state.number);
     return ElevatedButton(
         child: const Text('テキストフィールドダイアログボタン2'),
         onPressed: () {
@@ -71,10 +75,16 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
                   ],
                 ),
                 cancelActionText: 'Cancel',
-                cancelAction: () {},
+                cancelAction: () {
+                  nameController.text = state.name;
+                  numberController.text = state.number;
+                },
                 defaultActionText: 'OK',
                 action: () {
-                  // TODO: implement method
+                  notifier.save(
+                    name: nameController.text,
+                    number: numberController.text,
+                  );
                 },
               ),
             );
@@ -135,10 +145,16 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
                   ),
                 ),
                 cancelActionText: 'Cancel',
-                cancelAction: () {},
+                cancelAction: () {
+                  nameController.text = state.name;
+                  numberController.text = state.number;
+                },
                 defaultActionText: 'OK',
                 action: () {
-                  // TODO: implement method
+                  notifier.save(
+                    name: nameController.text,
+                    number: numberController.text,
+                  );
                 },
               ),
             );
