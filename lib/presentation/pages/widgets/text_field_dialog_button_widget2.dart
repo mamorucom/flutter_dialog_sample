@@ -19,6 +19,58 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
     final notifier = ref.watch(dialogSampleStateProvider.notifier);
     final nameController = useTextEditingController(text: state.name);
     final numberController = useTextEditingController(text: state.number);
+
+    final columnWidget = Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextFormField(
+          controller: nameController,
+          maxLength: 10,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+            labelText: '名前',
+            errorMaxLines: 2,
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              // return 'Name must not be null or empty.';
+              return '名前を入力してください。';
+            }
+            if (value.length > 10) {
+              return '';
+            }
+            return null;
+          },
+        ),
+        TextFormField(
+          controller: numberController,
+          maxLength: 10,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          keyboardType: TextInputType.number,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+            labelText: '番号',
+            errorMaxLines: 2,
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              // return 'Number must not be null or empty.';
+              return '番号を入力してください。';
+            }
+            if (int.tryParse(value) == null) {
+              return '番号を入力してください。';
+            }
+            if (value.length > 10) {
+              return '';
+            }
+            return null;
+          },
+        ),
+      ],
+    );
+
     return ElevatedButton(
         child: const Text('テキストフィールドダイアログボタン2'),
         onPressed: () {
@@ -27,56 +79,8 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
               context: context,
               builder: (context) => CustomTextFieldDialog(
                 title: 'テキストフィールドダイアログ2',
-                contentWidget: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextFormField(
-                      controller: nameController,
-                      maxLength: 10,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(
-                        labelText: '名前',
-                        errorMaxLines: 2,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          // return 'Name must not be null or empty.';
-                          return '名前を入力してください。';
-                        }
-                        if (value.length > 10) {
-                          return '';
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: numberController,
-                      maxLength: 10,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      keyboardType: TextInputType.number,
-                      textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(
-                        labelText: '番号',
-                        errorMaxLines: 2,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          // return 'Number must not be null or empty.';
-                          return '番号を入力してください。';
-                        }
-                        if (int.tryParse(value) == null) {
-                          return '番号を入力してください。';
-                        }
-                        if (value.length > 10) {
-                          return '';
-                        }
-                        return null;
-                      },
-                    ),
-                  ],
-                ),
+                // ★showCupertinoDialogはelevation: 0.0のCardウィジェットでラップしないとエラーが出る
+                contentWidget: columnWidget,
                 cancelActionText: 'Cancel',
                 cancelAction: () {
                   nameController.text = state.name;
@@ -100,56 +104,7 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
                 contentWidget: Card(
                   color: Colors.transparent,
                   elevation: 0.0,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextFormField(
-                        controller: nameController,
-                        maxLength: 10,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        keyboardType: TextInputType.text,
-                        textInputAction: TextInputAction.next,
-                        decoration: const InputDecoration(
-                          labelText: '名前',
-                          errorMaxLines: 2,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            // return 'Name must not be null or empty.';
-                            return '名前を入力してください。';
-                          }
-                          if (value.length > 10) {
-                            return '';
-                          }
-                          return null;
-                        },
-                      ),
-                      TextFormField(
-                        controller: numberController,
-                        maxLength: 10,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        keyboardType: TextInputType.number,
-                        textInputAction: TextInputAction.next,
-                        decoration: const InputDecoration(
-                          labelText: '番号',
-                          errorMaxLines: 2,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            // return 'Number must not be null or empty.';
-                            return '番号を入力してください。';
-                          }
-                          if (int.tryParse(value) == null) {
-                            return '番号を入力してください。';
-                          }
-                          if (value.length > 10) {
-                            return '';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  ),
+                  child: columnWidget,
                 ),
                 cancelActionText: 'Cancel',
                 cancelAction: () {

@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 
 class CustomTextFieldDialog extends StatelessWidget {
@@ -23,7 +21,6 @@ class CustomTextFieldDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const key = GlobalObjectKey<FormState>('FORM_KEY');
-
     return AlertDialog(
       title: Text(title),
       content: Form(
@@ -43,11 +40,8 @@ class CustomTextFieldDialog extends StatelessWidget {
           child: Text(defaultActionText),
           onPressed: () {
             if (key.currentState!.validate()) {
-              print('Validate OK');
               if (action != null) action!();
               Navigator.of(context).pop(true);
-            } else {
-              print('Validate NG');
             }
           },
         ),
