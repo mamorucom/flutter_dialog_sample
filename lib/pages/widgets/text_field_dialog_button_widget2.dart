@@ -82,7 +82,7 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
             showCupertinoDialog(
               context: context,
               builder: (context) => CustomTextFieldDialog(
-                title: 'テキストフィールドダイアログ',
+                title: 'テキストフィールドダイアログ2',
                 contentWidget: Card(
                   color: Colors.transparent,
                   elevation: 0.0,
