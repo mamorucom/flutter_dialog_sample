@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import 'pages/dialog_sample_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const DialogSamplePage(),
     );
   }
 }
