@@ -96,6 +96,7 @@ class TextFieldDialogButtonWidget2 extends HookConsumerWidget {
               context: context,
               builder: (context) => CustomTextFieldDialog(
                 title: 'テキストフィールドダイアログ2',
+                // ★showCupertinoDialogはelevation: 0.0のCardウィジェットでラップしないとエラーが出る
                 contentWidget: Card(
                   color: Colors.transparent,
                   elevation: 0.0,
