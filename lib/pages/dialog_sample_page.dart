@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'widgets/alert_dialog_button_widget.dart';
 import 'widgets/drop_down_dialog_button_widget.dart';
+import 'widgets/multiple_dialog_button_widget.dart';
 import 'widgets/text_field_dialog_button_widget.dart';
 
 ///
@@ -33,9 +34,11 @@ class DialogSamplePage extends StatelessWidget {
         children: const [
           AlertDialogButtonWidget(),
 
+          DropdownDialogButtonWidget(),
+
           TextFieldDialogButtonWidget(),
 
-          DropdownDialogButtonWidget(),
+          // MultipleDialogButtonWidget(),
 
           // // 3つ以上の選択肢
           // ElevatedButton(
